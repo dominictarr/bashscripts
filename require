@@ -13,11 +13,21 @@
 base="${2:-$PWD}"
 target="$1"
 
+if [ -z "$target" ]; then
+
+  cat ./docs/require.markdown >/dev/stderr
+  exit 1
+
+fi
+
+
 if [ -d "$base" ]; then
   base="$base"
 else
   base=`dirname "$base"`
 fi
+
+base=`readlink -e $base`
 
 function checkroot {
   if [ $1 -ef / ];

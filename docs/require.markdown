@@ -1,22 +1,3 @@
-#bashscripts
-
-so I didn't really want to make bash the next language that I learn, because it's hidious and bizzare.
-
-but it's just always _there_.
-
-so I just gotta.
-
-## smartprompt
-
-smartprompt generates a terminal prompt, but leaves off your username/hostname if you are who you normally are.
-
-also, it also shows the current git branch, unless it's master.
-
- 
-``` bash
->smartprompt dominic dominic
-``
-
 ## require CMDNAME $0
 
 require is a command for finding commands.

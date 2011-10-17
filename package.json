@@ -5,6 +5,10 @@
 , "repository": 
   { "type": "git"
   , "url": "https://github.com/dominictarr/bashscripts.git" }
+, "bin": {
+    "smartprompt" :"./smartprompt",
+    "require" :"./require"
+  }
 , "dependencies": {}
 , "devDependencies": {}
 , "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://bit.ly/dominictarr)"
