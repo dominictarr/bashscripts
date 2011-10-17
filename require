@@ -1,0 +1,41 @@
+#!/bin/bash
+# nodejs style `require` for bash.
+# inside a bash script do
+# you would use it the same way require works in node...
+# cmd=`require commandname $0`
+# (which searches for commandname
+# (../)*./node_modules/commandname
+
+#echo $0 `dirname $0`
+
+#echo \$1: $1 $2
+
+base="${2:-$PWD}"
+target="$1"
+
+if [ -d "$base" ]; then
+  base="$base"
+else
+  base=`dirname "$base"`
+fi
+
+function checkroot {
+  if [ $1 -ef / ];
+    then
+      echo MODULE NOT FOUND $2 >/dev/stderr
+      exit 1
+  fi  
+}
+
+function checkfind {
+  if [ -e "$1"/node_modules/"$2" ]; then
+    echo "$1"/node_modules/"$2"
+    exit 0
+  fi
+}
+
+while [ true ]; do
+  checkfind "$base" "$target"
+  checkroot "$base" "$target"
+  base=`dirname $base`
+done

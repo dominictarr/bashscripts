@@ -1,0 +1,11 @@
+#!/bin/bash
+# okay, so I wanna make a nodejs style `require` for bash.
+# it should look in node_modules recursively, so that dependencies can be installed with npm.
+# you would use it the same way require works in node...
+# cmd=`require commandname $0`
+# (which searches for commandname
+# (../)*./node_modules/commandname
+
+#echo $0 `dirname $0`
+
+echo `./search $0`

@@ -1,0 +1,23 @@
+#!/bin/bash
+#make the prompt show $USER@$HOSTNAME:`pwd`:`git-branch | grep \*'
+#expept only show username if it's not 'dominic', 
+#hostname if it's not on my laptop, 
+#and git branch if it's not master.
+MYNAME=$1
+MYHOSTNAME=$2
+DEFAULTBRANCH=${3:-master}
+RELWD=~${PWD:`expr length $HOME`}
+function ifblank  {
+  if [ "$1" = "$2" ]; then
+    echo "" 
+  else 
+    echo "$1"
+  fi
+}
+
+function gitbranch {
+  BRANCH=`git branch 2>/dev/null | grep \* --colour=never`
+  echo ${BRANCH:2}
+}
+
+echo `ifblank $USER $MYNAME`@`ifblank $HOSTNAME "$MYHOSTNAME"`:$RELWD \*`ifblank "\`gitbranch\`" "$DEFAULTBRANCH"`\>
